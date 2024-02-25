@@ -1,8 +1,5 @@
 package semi01.project;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class RoomReservation {
 
   protected String Name; //예약자명
@@ -10,6 +7,9 @@ public class RoomReservation {
      public String Room; //예약할 룸
    protected int People; //인원
 public int Price;
+
+
+
     public String getName() {
         return Name;
     }
@@ -43,6 +43,10 @@ public int Price;
     }
 
     public RoomReservation(String name,int day,String room,int people) {
+        Name=name;
+        ReservationDay=day;
+        Room= room;
+        People=people;
         init();
 
     }
@@ -55,10 +59,11 @@ public int Price;
     public int calcPrice(){
         return Price*ReservationDay;
     }
-    public String showCustomerInfo(){
-        return Name+Price+People;
+    public void showCustomerInfo(){
+        System.out.println("지불 비용: "+calcPrice()+"예약자명: "+ getName()+"예약 일수: "+ getReservationDay()+"예약 룸: "+ getRoom()+"인원: "+getPeople());
+
     }
-    public String showRoomInfo(){
-        return Room + Price +People ;
+    public void showRoomInfo(){
+        System.out.println("룸 이름: "+Room+" 인원: "+People+" 비용: "+Price);
     }
 }

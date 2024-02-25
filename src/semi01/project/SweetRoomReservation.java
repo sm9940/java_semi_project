@@ -24,12 +24,13 @@ public class SweetRoomReservation extends RoomReservation{
     }
 
     @Override
-    public String showCustomerInfo() {
-        return super.showCustomerInfo()+breakfast;
+    public void showCustomerInfo() {
+        System.out.println("지불 비용: "+calcPrice()+" 예약자명: "+ getName()+" 예약 일수: "+ getReservationDay()+" 예약 룸: "+ getRoom()+" 인원: "+getPeople()+" 조식여부:"+breakfast);
     }
 
     @Override
-    public String showRoomInfo() {
-        return super.showRoomInfo();
+    public void showRoomInfo() {
+        System.out.println("룸 이름: "+Room+" 인원: "+People+" 비용: "+Price+" 조식여부:"+breakfast);
+
     }
 }
