@@ -19,8 +19,10 @@ public class SweetRoomReservation extends RoomReservation{
     }
 
     @Override
-    public int calcPrice() {
-        return (int) ((Price-(Price*saleRatio))*ReservationDay);
+    public int calcPrice() {if(ReservationDay>=3){return (int) ((Price-(Price*saleRatio))*ReservationDay)
+            ;}
+            else{return  Price*ReservationDay; }
+
     }
 
     @Override

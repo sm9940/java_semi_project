@@ -113,6 +113,9 @@ public class RoomReservationApplication {
         for (RoomReservation reservation:list){
             if(name.equals(reservation.getName())){
                 reservation.showCustomerInfo();
+            } else{
+                System.out.println("고객 정보가 없습니다.");
+                break;
             }
         }
     }

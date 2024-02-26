@@ -19,7 +19,8 @@ public class DoubleRoomReservation extends RoomReservation{
 
     @Override
     public int calcPrice() {
-        return (int) ((Price-(Price*saleRatio))*ReservationDay);
+        if(ReservationDay>=3){return (int) ((Price-(Price*saleRatio))*ReservationDay);}
+        else{return  Price*ReservationDay; }
     }
 
     @Override
