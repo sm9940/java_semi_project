@@ -64,6 +64,7 @@ public class RoomReservationApplication {
                     break;
                 }else {
                     list.add(Double);
+                    System.out.println("예약 완료되었습니다.");
                 }
 
                 break;
