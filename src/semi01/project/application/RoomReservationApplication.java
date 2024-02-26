@@ -46,22 +46,39 @@ public class RoomReservationApplication {
         String room = scanner.next();
         System.out.print("인원: ");
         int people = scanner.nextInt();
+
         switch (room) {
             case "single":
-                RoomReservation single = new RoomReservation(name,day,room,people);
-                list.add(single);
+
+                if(people>1){
+                    System.out.println("인원이 초과되었습니다.");
+                    break;}
+                else {RoomReservation single = new RoomReservation(name,day,room,people);
+                    list.add(single);}
                 break;
             case "double":
-                RoomReservation Double = new DoubleRoomReservation(name, day, room, people);
-                list.add(Double);
+                if(people>2){
+                    System.out.println("인원이 초과되었습니다.");
+                    break;
+                }else {
+                    RoomReservation Double = new DoubleRoomReservation(name, day, room, people);
+                    list.add(Double);
+                }
+
                 break;
             case "twin":
-                RoomReservation twin = new TwinRoomReservation(name, day, room, people);
-                list.add(twin);
+                if(people>3){System.out.println("인원이 초과되었습니다.");
+                    break;} else {
+                    RoomReservation twin = new TwinRoomReservation(name, day, room, people);
+                    list.add(twin);
+                }
                 break;
             case "sweet":
-                RoomReservation sweet = new SweetRoomReservation(name, day, room, people);
-                list.add(sweet);
+                if(people>5){
+                    System.out.println("인원이 초과되었습니다.");
+                    break;
+                } else {RoomReservation sweet = new SweetRoomReservation(name, day, room, people);
+                    list.add(sweet);}
                 break;
         }
 
