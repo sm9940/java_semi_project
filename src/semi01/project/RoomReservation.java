@@ -60,10 +60,10 @@ public int Price;
         return Price*ReservationDay;
     }
     public void showCustomerInfo(){
-        System.out.println("지불 비용: "+calcPrice()+"예약자명: "+ getName()+"예약 일수: "+ getReservationDay()+"예약 룸: "+ getRoom()+"인원: "+getPeople());
+        System.out.println("지불 비용: "+calcPrice()+" "+"예약자명: "+ getName()+" "+"예약 일수: "+ getReservationDay()+" "+"예약 룸: "+ getRoom());
 
     }
     public void showRoomInfo(){
-        System.out.println("룸 이름: "+Room+" 인원: "+People+" 비용: "+Price);
+        System.out.println("룸 이름: "+Room+" "+" 인원: "+People+" "+" 비용: "+Price);
     }
 }

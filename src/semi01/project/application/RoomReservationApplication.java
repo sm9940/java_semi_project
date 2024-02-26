@@ -78,7 +78,7 @@ public class RoomReservationApplication {
                 break;
             case "sweet":
                 RoomReservation sweet = new SweetRoomReservation(name, day, room, people);
-                if(people>5){
+                if(people> sweet.getPeople()){
                     System.out.println("인원이 초과되었습니다.");
                     break;
                 } else {
