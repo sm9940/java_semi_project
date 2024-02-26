@@ -49,36 +49,41 @@ public class RoomReservationApplication {
 
         switch (room) {
             case "single":
-
-                if(people>1){
+                RoomReservation single = new RoomReservation(name,day,room,people);
+                if(people>single.getPeople()){
                     System.out.println("인원이 초과되었습니다.");
                     break;}
-                else {RoomReservation single = new RoomReservation(name,day,room,people);
-                    list.add(single);}
+                else {
+                    list.add(single);
+                    System.out.println("예약 완료되었습니다.");}
                 break;
             case "double":
-                if(people>2){
+                    RoomReservation Double = new DoubleRoomReservation(name, day, room, people);
+                if(people>Double.getPeople()){
                     System.out.println("인원이 초과되었습니다.");
                     break;
                 }else {
-                    RoomReservation Double = new DoubleRoomReservation(name, day, room, people);
                     list.add(Double);
                 }
 
                 break;
             case "twin":
-                if(people>3){System.out.println("인원이 초과되었습니다.");
-                    break;} else {
                     RoomReservation twin = new TwinRoomReservation(name, day, room, people);
+                if(people>twin.getPeople()){System.out.println("인원이 초과되었습니다.");
+                    break;} else {
                     list.add(twin);
+                    System.out.println("예약 완료되었습니다.");
                 }
                 break;
             case "sweet":
+                RoomReservation sweet = new SweetRoomReservation(name, day, room, people);
                 if(people>5){
                     System.out.println("인원이 초과되었습니다.");
                     break;
-                } else {RoomReservation sweet = new SweetRoomReservation(name, day, room, people);
-                    list.add(sweet);}
+                } else {
+                    list.add(sweet);
+                    System.out.println("예약 완료되었습니다.");
+                }
                 break;
         }
 
