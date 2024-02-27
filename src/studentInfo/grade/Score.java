@@ -1,4 +1,4 @@
-package studentInfo.application;
+package studentInfo.grade;
 
 public class Score {
     protected int studentId;

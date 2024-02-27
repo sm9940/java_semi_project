@@ -1,4 +1,4 @@
-package studentInfo.application;
+package studentInfo.grade;
 
 import java.util.ArrayList;
 

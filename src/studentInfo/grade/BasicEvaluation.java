@@ -1,4 +1,4 @@
-package studentInfo.application;
+package studentInfo.grade;
 
 public class BasicEvaluation implements GradeEvaluation{
     @Override
