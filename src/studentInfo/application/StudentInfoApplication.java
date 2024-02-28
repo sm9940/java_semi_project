@@ -4,17 +4,22 @@ import studentInfo.school.School;
 import studentInfo.school.Score;
 import studentInfo.school.Student;
 import studentInfo.school.Subject;
+import studentInfo.school.report.GenerateGradeReport;
 import studentInfo.utils.Define;
 
 public class StudentInfoApplication {
     School goodSchool = School.getInstance(); //학교 생성
     Subject korean;
     Subject math;
+
+    GenerateGradeReport gradeReport = new GenerateGradeReport();
     public static void main(String[] args) {
-        StudentInfoApplication test = new StudentInfoApplication();
-        test.createSubject();
-        test.createStudent();
+        StudentInfoApplication app = new StudentInfoApplication();
+        app.createSubject();
+        app.createStudent();
         //성적 결과 생성해서 출력
+        String report = app.gradeReport.getReport();
+        System.out.println(report);
     }
     //과목 생성
     public void createSubject (){
@@ -29,8 +34,8 @@ public class StudentInfoApplication {
     public void createStudent(){
         Student student1 = new Student(181213,"이지은",korean);
         Student student2 = new Student(181518,"장원영",math);
-        Student student3 = new Student(171230,"원빈",korean);
-        Student student4= new Student(171255,"하니",korean);
+        Student student3 = new Student(171230,"원  빈",korean);
+        Student student4= new Student(171255,"하  니",korean);
         Student student5 = new Student(171590,"정성찬",math);
 
         //학교에 등록
