@@ -107,13 +107,13 @@ public class OrderApplication {
             String findName = scanner.next();
 
             ArrayList<Customer>customerList = SM_RESTAURANT.getCustomerList();
-            for (int i = 0 ; i <=customerList.size();i++){
+            for (int i = 0 ; i <customerList.size();i++){
                 Customer customer = customerList.get(i);
                 if(customer.getCustomerName().equals(findName)){
                     System.out.println(customer);
                 }
-                    break;
 
             }
+
         }
 }
