@@ -61,15 +61,15 @@ public class OrderApplication {
 
     public void createFood() {
         if (beef == null) {
-            beef = new Food("소고기", 1001, Define.BEEF_PRICE);
+            beef = new Food("스테이크", 1001, Define.BEEF_PRICE);
             SM_RESTAURANT.addFood(beef);
         }
         if (pork == null) {
-            pork = new Food("돼지고기", 2001, Define.PORK_PRICE);
+            pork = new Food("삼겹살구이", 2001, Define.PORK_PRICE);
             SM_RESTAURANT.addFood(pork);
         }
         if(chicken == null){
-            chicken = new Food("닭고기",3001,Define.CHICKEN_PRICE);
+            chicken = new Food("전기통닭",3001,Define.CHICKEN_PRICE);
             SM_RESTAURANT.addFood(chicken);
         }
     }
@@ -84,7 +84,7 @@ public class OrderApplication {
         String name = scanner.next();
         System.out.println("고객 ID : ");
         int id = scanner.nextInt();
-        System.out.println("선택할 음식 | 소고기 | 돼지고기 | 닭고기 |");
+        System.out.println("선택할 음식 | 스테이크 | 삼겹살구이 | 전기통닭 |");
         String choice = scanner.next();
        Food food= null;
        if(choice.equals(chicken.getFoodName())){food=chicken;}
