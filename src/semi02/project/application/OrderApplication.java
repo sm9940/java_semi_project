@@ -16,6 +16,7 @@ public class OrderApplication {
 
     private Food beef;
     private Food pork;
+    private Food chicken;
     private Restaurant SM_RESTAURANT = Restaurant.getInstance();
     private Receipt receipt = new Receipt();
     private Scanner scanner = new Scanner(System.in);
@@ -67,6 +68,10 @@ public class OrderApplication {
             pork = new Food("pork", 2001, Define.PORK_PRICE);
             SM_RESTAURANT.addFood(pork);
         }
+        if(chicken == null){
+            chicken = new Food("chicken",3001,Define.CHICKEN_PRICE);
+            SM_RESTAURANT.addFood(chicken);
+        }
     }
 
     public void createCustomer() {
@@ -79,8 +84,12 @@ public class OrderApplication {
         String name = scanner.next();
         System.out.println("고객 ID : ");
         int id = scanner.nextInt();
-        System.out.println("선택할 음식 | beef | pork |");
-        Food food = scanner.next().equals(beef.getFoodName()) ? beef : pork;
+        System.out.println("선택할 음식 | beef | pork | chicken |");
+        String choice = scanner.next();
+       Food food= null;
+       if(choice.equals(chicken.getFoodName())){food=chicken;}
+       else if(choice.equals(pork.getFoodName())){food=pork;}
+       else {food=beef;}
         System.out.println("음식 갯수: ");
         int number = scanner.nextInt();
         System.out.println("| 배달 | 포장 |");
@@ -89,9 +98,9 @@ public class OrderApplication {
         Customer customer1 = new Customer(name, id, food, number, method);
         if (food == beef) {
             beef.register(customer1);
-        } else {
+        } else if(food==pork){
             pork.register(customer1);
-        }
+        }else {chicken.register(customer1);}
         if (method == delivery) {
             delivery.register(customer1);
             SM_RESTAURANT.addCustomer(customer1);
