@@ -7,13 +7,14 @@ import java.util.ArrayList;
 public class Food {
     protected String foodName;
     protected int foodId;
-
+    protected int foodPrice;
     protected int deliveryType;
    protected ArrayList<Customer>customerList = new ArrayList<>();
 
-   public Food(String foodName, int foodId){
+   public Food(String foodName, int foodId,int foodPrice){
        this.foodName = foodName;
        this.foodId = foodId;
+       this.foodPrice = foodPrice;
        this.deliveryType = Define.DEL_TYPE; //배달방식: 기본으로 배달 사용
    }
    public void register(Customer customer){
