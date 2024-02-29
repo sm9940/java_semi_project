@@ -52,27 +52,28 @@ public void makeBody(Food food){
         buffer.append(" | ");
         buffer.append(customer.getDeliveryPacking().getDeliveryMethod());
         buffer.append(" | ");
-        buffer.append(getPrice(customer));
+        getPrice(customer);
         buffer.append("\n");
     }
 }
 public void makeFooter(){buffer.append("\n");};
-public int getPrice(Customer customer) {
-    ArrayList<Customer> customerList = customer
+public void getPrice(Customer customer) {
+
     int deliveryType = customer.getDeliveryPacking().getDeliveryType();
     Payment[] payments = {new DeliveryPay(), new PackagingPay()};
-        int Price = 0;
-    for (int i = 0; i < customerList.size(); i++) {
-        Customer customer1 = customerList.get(i);
+
+        int Price;
+
         if (deliveryType == Define.DEL_TYPE) {
-            Price =  + payments[Define.DEL_TYPE].getPay();
+            Price =  customer.calc()+ payments[Define.DEL_TYPE].getPay();
 
         } else {
-            Price =  + payments[Define.PACK_TYPE].getPay();
+            Price =  customer.calc()+ payments[Define.PACK_TYPE].getPay();
 
         }
-        return Price;
-    }
-    return Price;
+        buffer.append(Price);
+        buffer.append(" | ");
+
+
 }
 }

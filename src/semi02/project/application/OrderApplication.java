@@ -7,48 +7,113 @@ import semi02.project.restaurant.Restaurant;
 import semi02.project.restaurant.receipt.Receipt;
 import semi02.project.utils.Define;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class OrderApplication {
-    Food beef;
-    Food pork;
-    Restaurant SM_RESTAURANT = Restaurant.getInstance();
-    Receipt receipt =new Receipt();
+    private static OrderApplication instance;
+
+    private Food beef;
+    private Food pork;
+    private Restaurant SM_RESTAURANT = Restaurant.getInstance();
+    private Receipt receipt = new Receipt();
+    private Scanner scanner = new Scanner(System.in);
+
+    private OrderApplication() {}
+
+    public static OrderApplication getInstance() {
+        if (instance == null) {
+            instance = new OrderApplication();
+        }
+        return instance;
+    }
+
+
     public static void main(String[] args) {
-        OrderApplication app = new OrderApplication();
-        app.createFood();
-        app.createCustomer();
-        String report = app.receipt.getReceipt() ;
-        System.out.println(report);
-
-
-
+        OrderApplication.getInstance().run();
     }
-    public void createFood(){
-        beef = new Food("beef",1001,Define.BEEF_PRICE);
-        pork = new Food("pork",2001,Define.PORK_PRICE);
-        SM_RESTAURANT.addFood(beef);
-        SM_RESTAURANT.addFood(pork);
+    public void run() {
+        boolean run = true;
+        while (run) {
+            String report = receipt.getReceipt();
+            createFood();
+            System.out.println("====================================================");
+            System.out.println("1. 주문하기 | 2. 주문 고객 정보 | 3. 고객 이름으로 주문내역 검색 | 4.종료");
+            System.out.println("====================================================");
+            int select = scanner.nextInt();
+            switch (select) {
+                case 1:
+                    createCustomer();
+                    break;
+                case 2:
+                    System.out.println(report);
+                    break;
+                case 3: findCustomer();
+                break;
+                case 4:
+                    run = false;
+                    break;
+            }
+        }
     }
-    public void createCustomer(){
-        DeliveryPacking delivery =new DeliveryPacking("delivery", Define.DEL_TYPE);
-        DeliveryPacking packaging =new DeliveryPacking("packaging", Define.PACK_TYPE);
-        Customer customer1 = new Customer("이승민",191912,beef,3,delivery);
-        Customer customer2 = new Customer("오승찬",191913,beef,3,packaging);
-        Customer customer3 = new Customer("이영광",191914,pork,4,delivery);
-        Customer customer4 = new Customer("원상운",191915,pork,2,packaging);
-        SM_RESTAURANT.addCustomer(customer1);
-        SM_RESTAURANT.addCustomer(customer2);
-        SM_RESTAURANT.addCustomer(customer3);
-        SM_RESTAURANT.addCustomer(customer4);
-        beef.register(customer1);
-        beef.register(customer2);
-        pork.register(customer3);
-        pork.register(customer4);
-        delivery.register(customer1);
-        packaging.register(customer2);
-        delivery.register(customer3);
-        packaging.register(customer4);
+
+    public void createFood() {
+        if (beef == null) {
+            beef = new Food("beef", 1001, Define.BEEF_PRICE);
+            SM_RESTAURANT.addFood(beef);
+        }
+        if (pork == null) {
+            pork = new Food("pork", 2001, Define.PORK_PRICE);
+            SM_RESTAURANT.addFood(pork);
+        }
+    }
+
+    public void createCustomer() {
+        DeliveryPacking delivery = new DeliveryPacking("배달", Define.DEL_TYPE);
+        DeliveryPacking packaging = new DeliveryPacking("포장", Define.PACK_TYPE);
         SM_RESTAURANT.addDeliveryPacking(delivery);
         SM_RESTAURANT.addDeliveryPacking(packaging);
-    }
 
+        System.out.println("고객 이름: ");
+        String name = scanner.next();
+        System.out.println("고객 ID : ");
+        int id = scanner.nextInt();
+        System.out.println("선택할 음식 | beef | pork |");
+        Food food = scanner.next().equals(beef.getFoodName()) ? beef : pork;
+        System.out.println("음식 갯수: ");
+        int number = scanner.nextInt();
+        System.out.println("| 배달 | 포장 |");
+        DeliveryPacking method = scanner.next().equals(delivery.getDeliveryMethod()) ? delivery : packaging;
+
+        Customer customer1 = new Customer(name, id, food, number, method);
+        if (food == beef) {
+            beef.register(customer1);
+        } else {
+            pork.register(customer1);
+        }
+        if (method == delivery) {
+            delivery.register(customer1);
+            SM_RESTAURANT.addCustomer(customer1);
+            System.out.println("주문 완료 되었습니다");
+        } else {
+            packaging.register(customer1);
+            SM_RESTAURANT.addCustomer(customer1);
+            System.out.println("주문 완료 되었습니다");
+        }
+    }
+        public void findCustomer(){
+            System.out.println("고객명:");
+            String findName = scanner.next();
+
+            ArrayList<Customer>customerList = SM_RESTAURANT.getCustomerList();
+            for (int i = 0 ; i <=customerList.size();i++){
+                Customer customer = customerList.get(i);
+                if(customer.getCustomerName().equals(findName)){
+                    System.out.println(customer);
+                }
+                    break;
+
+            }
+        }
 }

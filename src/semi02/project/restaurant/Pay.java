@@ -1,12 +1,15 @@
-package semi02.project.restaurant.receipt;
-
-import semi02.project.restaurant.Customer;
+package semi02.project.restaurant;
 
 import java.util.ArrayList;
 
 public class Pay {
     protected int number;
     ArrayList<Pay> payList = new ArrayList<>();
+
+    public ArrayList<Customer> getCustomerList() {
+        return customerList;
+    }
+
     ArrayList<Customer>customerList = new ArrayList<>();
     public Pay(int number){
         this.number = number;
